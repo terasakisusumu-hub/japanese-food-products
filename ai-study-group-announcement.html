@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>社内AI勉強会のお知らせ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg-gradient: linear-gradient(135deg, #f0f5ff 0%, #ffeef8 100%);
+      --card-bg: rgba(255, 255, 255, 0.85);
+      --accent: #5c6cff;
+      --accent-soft: rgba(92, 108, 255, 0.08);
+      --text-primary: #1f2430;
+      --text-secondary: #5a6072;
+      --divider: rgba(31, 36, 48, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Noto Sans JP', 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-primary);
+      display: flex;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px;
+    }
+
+    main {
+      width: min(960px, 100%);
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(12px);
+      border-radius: 24px;
+      box-shadow: 0 24px 60px rgba(37, 49, 111, 0.15);
+      overflow: hidden;
+    }
+
+    .hero {
+      position: relative;
+      height: clamp(240px, 40vw, 420px);
+      display: grid;
+      place-items: center;
+      background: #111;
+    }
+
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(105%);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(145deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.55) 100%);
+      pointer-events: none;
+    }
+
+    .hero__badge {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero__copy {
+      position: absolute;
+      bottom: clamp(32px, 8vw, 64px);
+      left: clamp(32px, 8vw, 72px);
+      right: clamp(32px, 8vw, 72px);
+      color: #f8f9ff;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .hero__kicker {
+      font-size: clamp(0.85rem, 2vw, 1rem);
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(248, 249, 255, 0.75);
+    }
+
+    .hero__title {
+      font-family: 'Poppins', 'Noto Sans JP', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.1;
+      margin: 0;
+    }
+
+    .hero__subtitle {
+      font-size: clamp(1rem, 2.2vw, 1.25rem);
+      max-width: 480px;
+      margin: 0;
+      color: rgba(248, 249, 255, 0.82);
+    }
+
+    .details {
+      padding: clamp(32px, 5vw, 56px);
+      display: grid;
+      gap: 32px;
+      background: var(--card-bg);
+    }
+
+    .details__intro {
+      display: grid;
+      gap: 12px;
+    }
+
+    .details__intro h1 {
+      margin: 0;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-family: 'Poppins', 'Noto Sans JP', sans-serif;
+    }
+
+    .details__intro p {
+      margin: 0;
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+    }
+
+    .info-card {
+      border-radius: 18px;
+      padding: 24px;
+      border: 1px solid var(--divider);
+      background: rgba(255, 255, 255, 0.65);
+      display: grid;
+      gap: 12px;
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .info-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 32px rgba(92, 108, 255, 0.12);
+    }
+
+    .info-card__label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .info-card__value {
+      margin: 0;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .info-card__value time,
+    .info-card__value span {
+      font-weight: 600;
+    }
+
+    footer {
+      padding: 0 clamp(32px, 5vw, 56px) clamp(32px, 5vw, 56px);
+      padding-top: 0;
+      padding-bottom: clamp(24px, 4vw, 40px);
+      text-align: right;
+      font-size: 0.9rem;
+      color: rgba(31, 36, 48, 0.55);
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 32px 12px;
+      }
+
+      .hero__copy {
+        left: 24px;
+        right: 24px;
+      }
+
+      .info-card {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero" aria-label="AI勉強会のキービジュアル">
+      <img src="20250906_211639.jpg" alt="AIに関する社内勉強会のイメージ写真">
+      <div class="hero__badge">AI Study Group</div>
+      <div class="hero__copy">
+        <span class="hero__kicker">In-house Learning Session</span>
+        <h2 class="hero__title">AIがチームにもたらす価値を学ぶ夜</h2>
+        <p class="hero__subtitle">プロジェクトにすぐ活かせるAIユースケースや実践ワークを交えながら、共にスキルアップしましょう。</p>
+      </div>
+    </section>
+
+    <section class="details" aria-labelledby="event-summary">
+      <div class="details__intro">
+        <h1 id="event-summary">社内AI勉強会</h1>
+        <p>最新の生成AIトレンドから現場で使えるプロンプト術、データ活用のベストプラクティスまで、実例ベースで共有します。</p>
+      </div>
+
+      <div class="info-grid" role="list">
+        <article class="info-card" role="listitem">
+          <span class="info-card__label">タイトル</span>
+          <p class="info-card__value">「現場で効くAI活用ハンズオン」</p>
+        </article>
+        <article class="info-card" role="listitem">
+          <span class="info-card__label">開催日時</span>
+          <p class="info-card__value">
+            <time datetime="2025-12-12T18:00">2025年12月12日（金）18:00 - 20:00</time>
+          </p>
+        </article>
+        <article class="info-card" role="listitem">
+          <span class="info-card__label">場所</span>
+          <p class="info-card__value">本社12F コラボレーションラウンジ</p>
+        </article>
+      </div>
+    </section>
+
+    <footer>
+      主催：DX推進室 / お問い合わせ：ai-study@company.co.jp
+    </footer>
+  </main>
+</body>
+</html>
