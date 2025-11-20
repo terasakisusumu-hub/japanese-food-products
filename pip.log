@@ -1,0 +1,14 @@
+Defaulting to user installation because normal site-packages is not writeable
+Collecting pdfminer.six
+  Downloading pdfminer_six-20251107-py3-none-any.whl.metadata (4.2 kB)
+Collecting charset-normalizer>=2.0.0 (from pdfminer.six)
+  Downloading charset_normalizer-3.4.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (37 kB)
+Requirement already satisfied: cryptography>=36.0.0 in /usr/lib/python3/dist-packages (from pdfminer.six) (41.0.7)
+Downloading pdfminer_six-20251107-py3-none-any.whl (5.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.6/5.6 MB 82.4 MB/s eta 0:00:00
+
+Downloading charset_normalizer-3.4.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (153 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 153.5/153.5 kB 30.2 MB/s eta 0:00:00
+
+Installing collected packages: charset-normalizer, pdfminer.six
+Successfully installed charset-normalizer-3.4.4 pdfminer.six-20251107
