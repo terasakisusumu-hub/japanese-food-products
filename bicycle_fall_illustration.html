@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自転車転倒と立ち上がり</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #87CEEB 0%, #E0F6FF 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .scene-container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            max-width: 600px;
+            width: 100%;
+        }
+        
+        .scene-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        
+        svg {
+            width: 100%;
+            height: auto;
+            max-width: 500px;
+        }
+    </style>
+</head>
+<body>
+    <h1>自転車の転倒と立ち上がり</h1>
+    
+    <!-- シーン1: 転倒 -->
+    <div class="scene-container">
+        <div class="scene-title">シーン1: 転倒</div>
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+            <!-- 地面 -->
+            <rect x="0" y="250" width="400" height="50" fill="#90EE90"/>
+            
+            <!-- 自転車のフレーム（転倒時） -->
+            <g transform="translate(200, 180) rotate(-30)">
+                <!-- フレーム -->
+                <line x1="0" y1="0" x2="60" y2="40" stroke="#333" stroke-width="4"/>
+                <line x1="0" y1="0" x2="-40" y2="50" stroke="#333" stroke-width="4"/>
+                <line x1="60" y1="40" x2="20" y2="50" stroke="#333" stroke-width="4"/>
+                
+                <!-- 前輪 -->
+                <circle cx="60" cy="40" r="25" fill="none" stroke="#333" stroke-width="3"/>
+                <circle cx="60" cy="40" r="3" fill="#333"/>
+                
+                <!-- 後輪 -->
+                <circle cx="20" cy="50" r="25" fill="none" stroke="#333" stroke-width="3"/>
+                <circle cx="20" cy="50" r="3" fill="#333"/>
+                
+                <!-- ハンドル -->
+                <line x1="0" y1="0" x2="10" y2="-15" stroke="#333" stroke-width="3"/>
+                <line x1="10" y1="-15" x2="25" y2="-15" stroke="#333" stroke-width="3"/>
+            </g>
+            
+            <!-- 子供（転倒時） -->
+            <g transform="translate(180, 200)">
+                <!-- 体 -->
+                <ellipse cx="0" cy="0" rx="15" ry="25" fill="#FFDBAC"/>
+                
+                <!-- 頭 -->
+                <circle cx="0" cy="-35" r="18" fill="#FFDBAC"/>
+                
+                <!-- 髪 -->
+                <path d="M -15 -35 Q -20 -50, -10 -50 Q 0 -55, 10 -50 Q 20 -50, 15 -35" fill="#8B4513"/>
+                
+                <!-- 目（閉じている） -->
+                <line x1="-8" y1="-38" x2="-4" y2="-38" stroke="#333" stroke-width="1.5"/>
+                <line x1="4" y1="-38" x2="8" y2="-38" stroke="#333" stroke-width="1.5"/>
+                
+                <!-- 口（驚き） -->
+                <ellipse cx="0" cy="-32" rx="4" ry="6" fill="#FF69B4"/>
+                
+                <!-- 腕（転倒時） -->
+                <line x1="-15" y1="0" x2="-30" y2="20" stroke="#FFDBAC" stroke-width="4" stroke-linecap="round"/>
+                <line x1="15" y1="0" x2="25" y2="15" stroke="#FFDBAC" stroke-width="4" stroke-linecap="round"/>
+                
+                <!-- 手 -->
+                <circle cx="-30" cy="20" r="5" fill="#FFDBAC"/>
+                <circle cx="25" cy="15" r="5" fill="#FFDBAC"/>
+                
+                <!-- 足（転倒時） -->
+                <line x1="-10" y1="25" x2="-20" y2="40" stroke="#FFDBAC" stroke-width="4" stroke-linecap="round"/>
+                <line x1="10" y1="25" x2="15" y2="35" stroke="#FFDBAC" stroke-width="4" stroke-linecap="round"/>
+                
+                <!-- 服 -->
+                <rect x="-12" y="-5" width="24" height="30" fill="#4A90E2" rx="5"/>
+            </g>
+        </svg>
+    </div>
+    
+    <!-- シーン2: 立ち上がり -->
+    <div class="scene-container">
+        <div class="scene-title">シーン2: 立ち上がり</div>
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+            <!-- 地面 -->
+            <rect x="0" y="250" width="400" height="50" fill="#90EE90"/>
+            
+            <!-- 自転車（横たわっている） -->
+            <g transform="translate(150, 240)">
+                <!-- フレーム -->
+                <line x1="0" y1="0" x2="80" y2="0" stroke="#333" stroke-width="4"/>
+                <line x1="0" y1="0" x2="-20" y2="15" stroke="#333" stroke-width="4"/>
+                <line x1="80" y1="0" x2="60" y2="15" stroke="#333" stroke-width="4"/>
+                
+                <!-- 前輪 -->
+                <circle cx="80" cy="0" r="25" fill="none" stroke="#333" stroke-width="3"/>
+                <circle cx="80" cy="0" r="3" fill="#333"/>
+                
+                <!-- 後輪 -->
+                <circle cx="60" cy="15" r="25" fill="none" stroke="#333" stroke-width="3"/>
+                <circle cx="60" cy="15" r="3" fill="#333"/>
+            </g>
+            
+            <!-- 子供（立ち上がり） -->
+            <g transform="translate(200, 200)">
+                <!-- 体（少し前傾） -->
+                <ellipse cx="0" cy="0" rx="12" ry="30" fill="#FFDBAC" transform="rotate(-10)"/>
+                
+                <!-- 頭 -->
+                <circle cx="0" cy="-40" r="18" fill="#FFDBAC"/>
+                
+                <!-- 髪 -->
+                <path d="M -15 -40 Q -20 -55, -10 -55 Q 0 -60, 10 -55 Q 20 -55, 15 -40" fill="#8B4513"/>
+                
+                <!-- 目（開いている） -->
+                <circle cx="-8" cy="-43" r="2" fill="#333"/>
+                <circle cx="8" cy="-43" r="2" fill="#333"/>
+                
+                <!-- 口（決意） -->
+                <line x1="-4" y1="-38" x2="4" y2="-38" stroke="#333" stroke-width="1.5"/>
+                
+                <!-- 腕（立ち上がる動作） -->
+                <line x1="-12" y1="-5" x2="-25" y2="-25" stroke="#FFDBAC" stroke-width="4" stroke-linecap="round"/>
+                <line x1="12" y1="-5" x2="25" y2="-25" stroke="#FFDBAC" stroke-width="4" stroke-linecap="round"/>
+                
+                <!-- 手 -->
+                <circle cx="-25" cy="-25" r="5" fill="#FFDBAC"/>
+                <circle cx="25" cy="-25" r="5" fill="#FFDBAC"/>
+                
+                <!-- 足（立ち上がる動作） -->
+                <line x1="-8" y1="30" x2="-8" y2="50" stroke="#FFDBAC" stroke-width="4" stroke-linecap="round"/>
+                <line x1="8" y1="30" x2="8" y2="50" stroke="#FFDBAC" stroke-width="4" stroke-linecap="round"/>
+                
+                <!-- 膝（少し曲がっている） -->
+                <circle cx="-8" cy="40" r="4" fill="#FFDBAC"/>
+                <circle cx="8" cy="40" r="4" fill="#FFDBAC"/>
+                
+                <!-- 服 -->
+                <rect x="-10" y="-8" width="20" height="35" fill="#4A90E2" rx="5" transform="rotate(-10)"/>
+            </g>
+        </svg>
+    </div>
+</body>
+</html>
