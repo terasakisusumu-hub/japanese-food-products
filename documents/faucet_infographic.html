@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>蛇口ネジ規格比較: G1/2 vs W26山20</title>
+    <style>
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            max-width: 800px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 20px;
+        }
+        .comparison-section {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        .item {
+            text-align: center;
+            margin: 20px;
+            flex: 1;
+            min-width: 250px;
+        }
+        .visual-box {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        .label {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: #34495e;
+        }
+        .desc {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            line-height: 1.5;
+        }
+        .circle {
+            border-radius: 50%;
+            border: 3px solid #3498db;
+            background-color: #eaf6ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2980b9;
+            font-weight: bold;
+        }
+        /* Scale: 10px = 1mm roughly for visualization on screen */
+        .g1-2 {
+            width: 210px;
+            height: 210px;
+        }
+        .w26 {
+            width: 260px;
+            height: 260px;
+        }
+        
+        .thread-viz {
+            margin-top: 40px;
+            border-top: 1px dashed #ccc;
+            padding-top: 30px;
+        }
+        
+        /* SVG Styles */
+        svg {
+            overflow: visible;
+        }
+        .thread-path {
+            fill: none;
+            stroke: #555;
+            stroke-width: 2;
+        }
+        .dimension-line {
+            stroke: #e74c3c;
+            stroke-width: 1;
+            marker-end: url(#arrow);
+            marker-start: url(#arrow);
+        }
+        .highlight {
+            fill: #e74c3c;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>蛇口ネジ規格の違い</h1>
+    
+    <div class="comparison-section">
+        <!-- G1/2 Section -->
+        <div class="item">
+            <div class="label">G1/2 (PF1/2)</div>
+            <div class="visual-box">
+                <!-- SVG for G1/2 Thread Profile -->
+                <svg width="200" height="150" viewBox="0 0 200 150">
+                    <text x="100" y="20" text-anchor="middle" font-size="14">外径: 約21mm</text>
+                    
+                    <!-- Bolt Shaft -->
+                    <rect x="50" y="40" width="100" height="100" fill="#ddd" />
+                    
+                    <!-- Threads (Coarse) - Pitch approx 1.8mm scaled up -->
+                    <!-- Let's say 10px = 1mm for drawing. Pitch 18px -->
+                    <path d="M 50 40 L 40 49 L 50 58 L 40 67 L 50 76 L 40 85 L 50 94 L 40 103 L 50 112 L 40 121 L 50 130" class="thread-path" />
+                    <path d="M 150 40 L 160 49 L 150 58 L 160 67 L 150 76 L 160 85 L 150 94 L 160 103 L 150 112 L 160 121 L 150 130" class="thread-path" />
+                    
+                    <text x="100" y="130" text-anchor="middle" fill="#555" font-size="12">山が粗い (14山/inch)</text>
+                </svg>
+            </div>
+            <div class="desc">
+                シャワーホース接続など<br>
+                1円玉(20mm)より少し大きい
+            </div>
+        </div>
+
+        <!-- W26-20 Section -->
+        <div class="item">
+            <div class="label">W26山20</div>
+            <div class="visual-box">
+                 <!-- SVG for W26-20 Thread Profile -->
+                 <svg width="200" height="150" viewBox="0 0 200 150">
+                    <text x="100" y="20" text-anchor="middle" font-size="14">外径: 26mm</text>
+                    
+                    <!-- Bolt Shaft (Wider) -->
+                    <rect x="35" y="40" width="130" height="100" fill="#ddd" />
+                    
+                    <!-- Threads (Fine) - Pitch approx 1.27mm scaled up -->
+                    <!-- Let's say 10px = 1mm. Pitch 12.7px -->
+                    <path d="M 35 40 L 28 46 L 35 52 L 28 58 L 35 64 L 28 70 L 35 76 L 28 82 L 35 88 L 28 94 L 35 100 L 28 106 L 35 112 L 28 118 L 35 124" class="thread-path" />
+                    <path d="M 165 40 L 172 46 L 165 52 L 172 58 L 165 64 L 172 70 L 165 76 L 172 82 L 165 88 L 172 94 L 165 100 L 172 106 L 165 112 L 172 118 L 165 124" class="thread-path" />
+                    
+                    <text x="100" y="130" text-anchor="middle" fill="#555" font-size="12">山が細かい (20山/inch)</text>
+                </svg>
+            </div>
+            <div class="desc">
+                水栓スパウト(パイプ)接続用<br>
+                500円玉(26.5mm)とほぼ同じ
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top: 30px; background: #fff3cd; padding: 15px; border-radius: 5px; font-size: 0.9em;">
+        <strong>Point:</strong> W26山20の方が「太くて」「目が細かい」のが特徴です。無理にはめるとネジが壊れます。
+    </div>
+</div>
+
+</body>
+</html>
