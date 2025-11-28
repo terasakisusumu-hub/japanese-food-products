@@ -325,6 +325,33 @@
             line-height: 1.6;
         }
 
+        /* 技イメージ画像スタイル */
+        .technique-image-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .technique-main-image {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 15px;
+            border: 3px solid var(--flame-orange);
+            box-shadow: 
+                0 0 20px rgba(255,107,53,0.5),
+                0 0 40px rgba(255,107,53,0.3),
+                0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .technique-main-image:hover {
+            transform: scale(1.02);
+            box-shadow: 
+                0 0 30px rgba(255,107,53,0.7),
+                0 0 60px rgba(255,107,53,0.4),
+                0 15px 40px rgba(0,0,0,0.6);
+        }
+
         /* 強さの源泉 */
         .strength-sources {
             display: grid;
@@ -665,6 +692,12 @@
         <!-- 炎の呼吸技 -->
         <section class="techniques-section">
             <h2 class="section-title">炎の呼吸 ─ 技一覧</h2>
+            
+            <!-- 技イメージ画像 -->
+            <div class="technique-image-container">
+                <img src="https://share.google/6S8DOFNEpatju3mIt" alt="煉獄杏寿郎 炎の呼吸" class="technique-main-image">
+            </div>
+            
             <div class="techniques-grid">
                 <div class="technique-card">
                     <span class="technique-number">壱</span>
