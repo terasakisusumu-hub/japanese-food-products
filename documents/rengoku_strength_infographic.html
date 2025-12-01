@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>煉獄杏寿郎の強さ - 図解</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=Zen+Antique&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --flame-orange: #FF6B35;
+            --flame-red: #E63946;
+            --flame-yellow: #FFD93D;
+            --flame-deep: #C1292E;
+            --dark-bg: #1A1A2E;
+            --gold: #FFB703;
+            --cream: #FFF8E7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Serif JP', serif;
+            background: var(--dark-bg);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* 炎のアニメーション背景 */
+        .fire-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 50% 100%, rgba(255,107,53,0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at 20% 80%, rgba(230,57,70,0.2) 0%, transparent 40%),
+                radial-gradient(ellipse at 80% 80%, rgba(230,57,70,0.2) 0%, transparent 40%),
+                var(--dark-bg);
+            z-index: -1;
+        }
+
+        /* 浮遊する火の粉 */
+        .ember {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: var(--flame-yellow);
+            border-radius: 50%;
+            animation: float-up 4s infinite ease-out;
+            opacity: 0;
+            box-shadow: 0 0 6px var(--flame-orange);
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) scale(1);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100px) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* ヘッダー */
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .title-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        h1 {
+            font-family: 'Zen Antique', serif;
+            font-size: 3.5rem;
+            color: var(--cream);
+            text-shadow: 
+                0 0 20px var(--flame-orange),
+                0 0 40px var(--flame-red),
+                0 0 60px var(--flame-deep);
+            letter-spacing: 0.3em;
+            animation: title-glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes title-glow {
+            from {
+                text-shadow: 
+                    0 0 20px var(--flame-orange),
+                    0 0 40px var(--flame-red);
+            }
+            to {
+                text-shadow: 
+                    0 0 30px var(--flame-yellow),
+                    0 0 50px var(--flame-orange),
+                    0 0 70px var(--flame-red);
+            }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin-top: 15px;
+            letter-spacing: 0.5em;
+        }
+
+        .flame-divider {
+            width: 200px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--flame-orange), var(--flame-yellow), var(--flame-orange), transparent);
+            margin: 30px auto;
+            border-radius: 2px;
+        }
+
+        /* 柱ランク表示 */
+        .pillar-rank {
+            background: linear-gradient(135deg, var(--flame-deep) 0%, var(--flame-orange) 50%, var(--flame-yellow) 100%);
+            padding: 3px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 40px;
+        }
+
+        .pillar-rank-inner {
+            background: var(--dark-bg);
+            padding: 15px 50px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .pillar-icon {
+            font-size: 2rem;
+        }
+
+        .pillar-text {
+            color: var(--cream);
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .pillar-text span {
+            color: var(--flame-orange);
+        }
+
+        /* メイン強さセクション */
+        .strength-overview {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        /* 炎のステータスカード */
+        .flame-card {
+            background: linear-gradient(145deg, rgba(255,107,53,0.1), rgba(26,26,46,0.9));
+            border: 2px solid var(--flame-orange);
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .flame-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, var(--flame-orange), transparent);
+            animation: rotate-glow 4s linear infinite;
+            opacity: 0.1;
+        }
+
+        @keyframes rotate-glow {
+            100% { transform: rotate(360deg); }
+        }
+
+        .flame-card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            color: var(--flame-yellow);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* 能力値レーダーチャート風 */
+        .stats-container {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .stat-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .stat-label {
+            width: 80px;
+            color: var(--cream);
+            font-size: 0.95rem;
+        }
+
+        .stat-bar-bg {
+            flex: 1;
+            height: 12px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .stat-bar {
+            height: 100%;
+            border-radius: 6px;
+            background: linear-gradient(90deg, var(--flame-deep), var(--flame-orange), var(--flame-yellow));
+            box-shadow: 0 0 10px var(--flame-orange);
+            animation: bar-fill 1.5s ease-out forwards;
+            transform-origin: left;
+        }
+
+        @keyframes bar-fill {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
+
+        .stat-value {
+            width: 40px;
+            color: var(--flame-yellow);
+            font-weight: 700;
+            text-align: right;
+        }
+
+        /* 炎の呼吸技一覧 */
+        .techniques-section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            color: var(--cream);
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '🔥';
+            position: absolute;
+            margin-left: 10px;
+        }
+
+        .techniques-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .technique-card {
+            background: linear-gradient(180deg, rgba(255,107,53,0.15), rgba(26,26,46,0.95));
+            border-radius: 15px;
+            padding: 25px 20px;
+            text-align: center;
+            border: 1px solid rgba(255,107,53,0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .technique-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--flame-orange);
+            box-shadow: 0 10px 30px rgba(255,107,53,0.3);
+        }
+
+        .technique-number {
+            font-size: 2.5rem;
+            color: var(--flame-orange);
+            font-weight: 900;
+            opacity: 0.3;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+        }
+
+        .technique-name {
+            font-size: 1.2rem;
+            color: var(--flame-yellow);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .technique-desc {
+            font-size: 0.85rem;
+            color: rgba(255,248,231,0.7);
+            line-height: 1.6;
+        }
+
+        /* 技イメージ画像スタイル */
+        .technique-image-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .technique-main-image {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 15px;
+            border: 3px solid var(--flame-orange);
+            box-shadow: 
+                0 0 20px rgba(255,107,53,0.5),
+                0 0 40px rgba(255,107,53,0.3),
+                0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .technique-main-image:hover {
+            transform: scale(1.02);
+            box-shadow: 
+                0 0 30px rgba(255,107,53,0.7),
+                0 0 60px rgba(255,107,53,0.4),
+                0 15px 40px rgba(0,0,0,0.6);
+        }
+
+        /* 強さの源泉 */
+        .strength-sources {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .source-card {
+            text-align: center;
+            padding: 30px 20px;
+            background: radial-gradient(circle at center, rgba(255,107,53,0.2), transparent);
+            border-radius: 50%;
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 2px dashed rgba(255,183,3,0.4);
+            transition: all 0.3s ease;
+        }
+
+        .source-card:hover {
+            border-color: var(--gold);
+            transform: scale(1.05);
+        }
+
+        .source-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .source-title {
+            font-size: 1.1rem;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+
+        .source-desc {
+            font-size: 0.8rem;
+            color: rgba(255,248,231,0.6);
+        }
+
+        /* 名言セクション */
+        .quote-section {
+            background: linear-gradient(135deg, rgba(193,41,46,0.2), rgba(26,26,46,0.95));
+            border-left: 5px solid var(--flame-orange);
+            padding: 40px;
+            border-radius: 0 20px 20px 0;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .quote-mark {
+            font-size: 5rem;
+            color: var(--flame-orange);
+            opacity: 0.3;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-family: serif;
+        }
+
+        .quote-text {
+            font-size: 1.5rem;
+            color: var(--cream);
+            line-height: 2;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quote-text em {
+            color: var(--flame-yellow);
+            font-style: normal;
+            font-weight: 700;
+        }
+
+        /* 比較図 */
+        .comparison-section {
+            margin-bottom: 50px;
+        }
+
+        .comparison-title {
+            text-align: center;
+            font-size: 1.5rem;
+            color: var(--cream);
+            margin-bottom: 30px;
+        }
+
+        .comparison-chart {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 30px;
+            padding: 30px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+        }
+
+        .comparison-bar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .bar-visual {
+            width: 60px;
+            border-radius: 10px 10px 0 0;
+            background: linear-gradient(180deg, var(--flame-yellow), var(--flame-orange), var(--flame-deep));
+            transition: height 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bar-visual::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .bar-label {
+            color: var(--cream);
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .bar-value {
+            color: var(--flame-yellow);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* 総合評価 */
+        .overall-rating {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(255,183,3,0.1), rgba(255,107,53,0.1));
+            border-radius: 20px;
+            border: 2px solid var(--gold);
+        }
+
+        .rating-title {
+            font-size: 1.3rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .rating-stars {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .rating-desc {
+            font-size: 1.1rem;
+            color: var(--cream);
+            line-height: 1.8;
+        }
+
+        .rating-highlight {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--flame-deep), var(--flame-orange));
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin-top: 15px;
+            font-weight: 700;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+                letter-spacing: 0.15em;
+            }
+
+            .strength-overview {
+                grid-template-columns: 1fr;
+            }
+
+            .techniques-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .strength-sources {
+                grid-template-columns: 1fr;
+            }
+
+            .source-card {
+                border-radius: 20px;
+                aspect-ratio: auto;
+                padding: 25px;
+            }
+
+            .comparison-chart {
+                flex-wrap: wrap;
+            }
+
+            .quote-text {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="fire-bg"></div>
+    
+    <!-- 火の粉エフェクト -->
+    <div class="ember" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="ember" style="left: 20%; animation-delay: 0.5s;"></div>
+    <div class="ember" style="left: 35%; animation-delay: 1s;"></div>
+    <div class="ember" style="left: 50%; animation-delay: 1.5s;"></div>
+    <div class="ember" style="left: 65%; animation-delay: 2s;"></div>
+    <div class="ember" style="left: 80%; animation-delay: 2.5s;"></div>
+    <div class="ember" style="left: 90%; animation-delay: 3s;"></div>
+
+    <div class="container">
+        <header>
+            <div class="title-wrapper">
+                <h1>煉獄杏寿郎の強さ</h1>
+            </div>
+            <p class="subtitle">炎 柱 ─ THE FLAME HASHIRA</p>
+            <div class="flame-divider"></div>
+            
+            <div class="pillar-rank">
+                <div class="pillar-rank-inner">
+                    <span class="pillar-icon">🔥</span>
+                    <span class="pillar-text">鬼殺隊最高位 <span>「柱」</span> の一人</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- 能力値セクション -->
+        <div class="strength-overview">
+            <div class="flame-card">
+                <div class="flame-card-content">
+                    <h2 class="card-title">⚔️ 戦闘能力</h2>
+                    <div class="stats-container">
+                        <div class="stat-row">
+                            <span class="stat-label">剣技</span>
+                            <div class="stat-bar-bg">
+                                <div class="stat-bar" style="width: 95%;"></div>
+                            </div>
+                            <span class="stat-value">S+</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">速度</span>
+                            <div class="stat-bar-bg">
+                                <div class="stat-bar" style="width: 90%; animation-delay: 0.2s;"></div>
+                            </div>
+                            <span class="stat-value">S</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">攻撃力</span>
+                            <div class="stat-bar-bg">
+                                <div class="stat-bar" style="width: 95%; animation-delay: 0.4s;"></div>
+                            </div>
+                            <span class="stat-value">S+</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">防御力</span>
+                            <div class="stat-bar-bg">
+                                <div class="stat-bar" style="width: 85%; animation-delay: 0.6s;"></div>
+                            </div>
+                            <span class="stat-value">S</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">持久力</span>
+                            <div class="stat-bar-bg">
+                                <div class="stat-bar" style="width: 92%; animation-delay: 0.8s;"></div>
+                            </div>
+                            <span class="stat-value">S</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flame-card">
+                <div class="flame-card-content">
+                    <h2 class="card-title">💫 精神力・人格</h2>
+                    <div class="stats-container">
+                        <div class="stat-row">
+                            <span class="stat-label">信念</span>
+                            <div class="stat-bar-bg">
+                                <div class="stat-bar" style="width: 100%;"></div>
+                            </div>
+                            <span class="stat-value">∞</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">勇気</span>
+                            <div class="stat-bar-bg">
+                                <div class="stat-bar" style="width: 100%; animation-delay: 0.2s;"></div>
+                            </div>
+                            <span class="stat-value">∞</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">優しさ</span>
+                            <div class="stat-bar-bg">
+                                <div class="stat-bar" style="width: 100%; animation-delay: 0.4s;"></div>
+                            </div>
+                            <span class="stat-value">∞</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">責任感</span>
+                            <div class="stat-bar-bg">
+                                <div class="stat-bar" style="width: 100%; animation-delay: 0.6s;"></div>
+                            </div>
+                            <span class="stat-value">∞</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">覚悟</span>
+                            <div class="stat-bar-bg">
+                                <div class="stat-bar" style="width: 100%; animation-delay: 0.8s;"></div>
+                            </div>
+                            <span class="stat-value">∞</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 炎の呼吸技 -->
+        <section class="techniques-section">
+            <h2 class="section-title">炎の呼吸 ─ 技一覧</h2>
+            
+            <!-- 技イメージ画像 -->
+            <div class="technique-image-container">
+                <img src="https://share.google/6S8DOFNEpatju3mIt" alt="煉獄杏寿郎 炎の呼吸" class="technique-main-image">
+            </div>
+            
+            <div class="techniques-grid">
+                <div class="technique-card">
+                    <span class="technique-number">壱</span>
+                    <h3 class="technique-name">不知火</h3>
+                    <p class="technique-desc">一直線に突進し斬りつける基本にして強力な技</p>
+                </div>
+                <div class="technique-card">
+                    <span class="technique-number">弐</span>
+                    <h3 class="technique-name">昇り炎天</h3>
+                    <p class="technique-desc">下から上へ強烈な斬り上げを放つ技</p>
+                </div>
+                <div class="technique-card">
+                    <span class="technique-number">参</span>
+                    <h3 class="technique-name">気炎万象</h3>
+                    <p class="technique-desc">上段から振り下ろす豪快な一撃</p>
+                </div>
+                <div class="technique-card">
+                    <span class="technique-number">肆</span>
+                    <h3 class="technique-name">盛炎のうねり</h3>
+                    <p class="technique-desc">広範囲の敵を薙ぎ払う防御的な技</p>
+                </div>
+                <div class="technique-card">
+                    <span class="technique-number">伍</span>
+                    <h3 class="technique-name">炎虎</h3>
+                    <p class="technique-desc">虎の形をした炎で敵を焼き尽くす大技</p>
+                </div>
+                <div class="technique-card">
+                    <span class="technique-number">玖</span>
+                    <h3 class="technique-name">煉獄</h3>
+                    <p class="technique-desc">炎柱代々受け継がれる最強奥義</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 強さの源泉 -->
+        <section>
+            <h2 class="section-title">強さの源泉</h2>
+            <div class="strength-sources">
+                <div class="source-card">
+                    <span class="source-icon">🏠</span>
+                    <h3 class="source-title">家系の誇り</h3>
+                    <p class="source-desc">代々炎柱を輩出した<br>煉獄家の血統</p>
+                </div>
+                <div class="source-card">
+                    <span class="source-icon">📖</span>
+                    <h3 class="source-title">独学の努力</h3>
+                    <p class="source-desc">指南書のみで<br>柱まで上り詰めた才覚</p>
+                </div>
+                <div class="source-card">
+                    <span class="source-icon">❤️</span>
+                    <h3 class="source-title">母の教え</h3>
+                    <p class="source-desc">「弱き人を助ける」<br>使命感の原点</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 名言 -->
+        <section class="quote-section">
+            <span class="quote-mark">"</span>
+            <p class="quote-text">
+                <em>心を燃やせ</em><br><br>
+                老いることも死ぬことも<br>
+                人間という儚い生き物の<em>美しさ</em>だ<br><br>
+                俺は俺の責務を全うする<br>
+                ここにいる者は<em>誰も死なせない</em>
+            </p>
+        </section>
+
+        <!-- 強さ比較 -->
+        <section class="comparison-section">
+            <h2 class="comparison-title">🔥 煉獄さんの強さ構成比</h2>
+            <div class="comparison-chart">
+                <div class="comparison-bar">
+                    <div class="bar-value">95</div>
+                    <div class="bar-visual" style="height: 190px;"></div>
+                    <span class="bar-label">剣術</span>
+                </div>
+                <div class="comparison-bar">
+                    <div class="bar-value">100</div>
+                    <div class="bar-visual" style="height: 200px;"></div>
+                    <span class="bar-label">精神力</span>
+                </div>
+                <div class="comparison-bar">
+                    <div class="bar-value">90</div>
+                    <div class="bar-visual" style="height: 180px;"></div>
+                    <span class="bar-label">経験値</span>
+                </div>
+                <div class="comparison-bar">
+                    <div class="bar-value">100</div>
+                    <div class="bar-visual" style="height: 200px;"></div>
+                    <span class="bar-label">覚悟</span>
+                </div>
+                <div class="comparison-bar">
+                    <div class="bar-value">95</div>
+                    <div class="bar-visual" style="height: 190px;"></div>
+                    <span class="bar-label">瞬発力</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 総合評価 -->
+        <section class="overall-rating">
+            <h2 class="rating-title">総合評価</h2>
+            <div class="rating-stars">⭐⭐⭐⭐⭐</div>
+            <p class="rating-desc">
+                上弦の参・猗窩座と互角以上に渡り合った実力<br>
+                「柱」の中でも最上位クラスの戦闘力<br>
+                そして何より、仲間を守り抜く<strong>不屈の精神</strong>
+            </p>
+            <span class="rating-highlight">鬼殺隊最強クラスの剣士</span>
+        </section>
+    </div>
+
+    <script>
+        // 追加の火の粉を動的に生成
+        function createEmber() {
+            const ember = document.createElement('div');
+            ember.className = 'ember';
+            ember.style.left = Math.random() * 100 + '%';
+            ember.style.animationDuration = (3 + Math.random() * 3) + 's';
+            document.body.appendChild(ember);
+            
+            setTimeout(() => {
+                ember.remove();
+            }, 6000);
+        }
+
+        setInterval(createEmber, 500);
+    </script>
+</body>
+</html>
