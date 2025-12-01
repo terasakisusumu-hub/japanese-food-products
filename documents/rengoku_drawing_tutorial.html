@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>煉獄さんを描こう！ステップバイステップガイド</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --flame-orange: #FF6B35;
+            --flame-red: #E63946;
+            --flame-yellow: #FFD93D;
+            --flame-deep: #C1292E;
+            --bg-light: #FFF8E7;
+            --text-dark: #1A1A2E;
+            --gold: #FFB703;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: linear-gradient(135deg, var(--bg-light) 0%, #FFE5CC 100%);
+            color: var(--text-dark);
+            line-height: 1.8;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            padding: 40px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid var(--flame-orange);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--flame-red);
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--flame-orange);
+            font-weight: 700;
+        }
+
+        .intro {
+            background: linear-gradient(135deg, rgba(255,107,53,0.1), rgba(255,217,61,0.1));
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            border-left: 5px solid var(--flame-orange);
+        }
+
+        .intro h2 {
+            color: var(--flame-red);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .intro p {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+        }
+
+        .step {
+            background: #f9f9f9;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 2px solid var(--flame-yellow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255,107,53,0.2);
+        }
+
+        .step-number {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--flame-red), var(--flame-orange));
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .step-title {
+            font-size: 1.8rem;
+            color: var(--flame-red);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .step-description {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            line-height: 2;
+        }
+
+        .prompt-box {
+            background: #1A1A2E;
+            color: #FFD93D;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            border-left: 4px solid var(--flame-orange);
+            position: relative;
+        }
+
+        .prompt-label {
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: var(--flame-orange);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+
+        .prompt-text {
+            margin-top: 10px;
+        }
+
+        .copy-btn {
+            background: var(--flame-orange);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: var(--flame-red);
+        }
+
+        .tips-box {
+            background: linear-gradient(135deg, rgba(255,183,3,0.1), rgba(255,217,61,0.1));
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid var(--gold);
+        }
+
+        .tips-box h3 {
+            color: var(--flame-red);
+            margin-bottom: 10px;
+        }
+
+        .tips-box ul {
+            margin-left: 20px;
+        }
+
+        .tips-box li {
+            margin-bottom: 8px;
+        }
+
+        .final-section {
+            background: linear-gradient(135deg, var(--flame-red), var(--flame-orange));
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .final-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .final-prompt {
+            background: rgba(0,0,0,0.3);
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            text-align: left;
+        }
+
+        .emoji {
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .step {
+                padding: 20px;
+            }
+
+            .prompt-box {
+                font-size: 0.85rem;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔥 煉獄さんを描こう！ 🔥</h1>
+            <p class="subtitle">nano banana pro ステップバイステップガイド</p>
+        </header>
+
+        <div class="intro">
+            <h2>📝 このガイドの使い方</h2>
+            <p>
+                nano banana proで各ステップのプロンプトを順番に入力していけば、
+                小学生でも簡単に煉獄さんを描けるようになります！
+                各ステップのプロンプトをコピーして、nano banana proに入力してください。
+            </p>
+        </div>
+
+        <!-- ステップ1 -->
+        <div class="step">
+            <span class="step-number">1</span>
+            <h2 class="step-title"><span class="emoji">⭕</span>ステップ1: 基本の形を描く（顔の輪郭）</h2>
+            <p class="step-description">
+                まず大きな丸を描きます。これが煉獄さんの顔のベースになります。
+                真ん中に少し下に配置します。
+            </p>
+            <div class="prompt-box">
+                <span class="prompt-label">nano banana pro プロンプト</span>
+                <div class="prompt-text" id="prompt1">
+simple circle shape for face, easy drawing tutorial step 1, kid-friendly, clean line art, white background
+                </div>
+                <button class="copy-btn" onclick="copyPrompt('prompt1')">📋 コピー</button>
+            </div>
+        </div>
+
+        <!-- ステップ2 -->
+        <div class="step">
+            <span class="step-number">2</span>
+            <h2 class="step-title"><span class="emoji">👁️</span>ステップ2: 目と眉毛を描く</h2>
+            <p class="step-description">
+                丸の上半分に2つの大きな目を描きます。目の上に太い眉毛を描きます。
+                煉獄さんはいつも元気な表情です！
+            </p>
+            <div class="prompt-box">
+                <span class="prompt-label">nano banana pro プロンプト</span>
+                <div class="prompt-text" id="prompt2">
+step 2: add two large eyes with bright expression, thick eyebrows above, simple anime style, easy for kids, clean line art
+                </div>
+                <button class="copy-btn" onclick="copyPrompt('prompt2')">📋 コピー</button>
+            </div>
+        </div>
+
+        <!-- ステップ3 -->
+        <div class="step">
+            <span class="step-number">3</span>
+            <h2 class="step-title"><span class="emoji">😊</span>ステップ3: 鼻と口を描く</h2>
+            <p class="step-description">
+                目の下に小さな鼻を描きます。その下に大きな笑顔の口を描きます。
+                煉獄さんはいつも笑顔です！
+            </p>
+            <div class="prompt-box">
+                <span class="prompt-label">nano banana pro プロンプト</span>
+                <div class="prompt-text" id="prompt3">
+step 3: add small nose and big smiling mouth, cheerful expression, simple anime character face, easy drawing
+                </div>
+                <button class="copy-btn" onclick="copyPrompt('prompt3')">📋 コピー</button>
+            </div>
+        </div>
+
+        <!-- ステップ4 -->
+        <div class="step">
+            <span class="step-number">4</span>
+            <h2 class="step-title"><span class="emoji">🔥</span>ステップ4: 特徴的な髪型を描く</h2>
+            <p class="step-description">
+                頭の上に炎のようなトゲトゲの髪を描きます。赤と黄色の色を使います。
+                煉獄さんの特徴的な髪型です！
+            </p>
+            <div class="prompt-box">
+                <span class="prompt-label">nano banana pro プロンプト</span>
+                <div class="prompt-text" id="prompt4">
+step 4: add flame-like spiky hair on top, red and yellow colors, wild hair style, simple anime hair, easy tutorial
+                </div>
+                <button class="copy-btn" onclick="copyPrompt('prompt4')">📋 コピー</button>
+            </div>
+        </div>
+
+        <!-- ステップ5 -->
+        <div class="step">
+            <span class="step-number">5</span>
+            <h2 class="step-title"><span class="emoji">👔</span>ステップ5: 体と服を描く</h2>
+            <p class="step-description">
+                顔の下に体を描きます。四角形のような形でOKです。
+                鬼殺隊の制服をイメージします。
+            </p>
+            <div class="prompt-box">
+                <span class="prompt-label">nano banana pro プロンプト</span>
+                <div class="prompt-text" id="prompt5">
+step 5: add body with demon slayer uniform, simple rectangle shape for torso, easy step by step tutorial
+                </div>
+                <button class="copy-btn" onclick="copyPrompt('prompt5')">📋 コピー</button>
+            </div>
+        </div>
+
+        <!-- ステップ6 -->
+        <div class="step">
+            <span class="step-number">6</span>
+            <h2 class="step-title"><span class="emoji">🧥</span>ステップ6: 羽織（はおり）を描く</h2>
+            <p class="step-description">
+                体の上に羽織（コート）を描きます。炎の模様を描きます。
+                赤と黄色で塗ります。
+            </p>
+            <div class="prompt-box">
+                <span class="prompt-label">nano banana pro プロンプト</span>
+                <div class="prompt-text" id="prompt6">
+step 6: add flame pattern haori coat, red and yellow flame designs, simple pattern, easy drawing tutorial
+                </div>
+                <button class="copy-btn" onclick="copyPrompt('prompt6')">📋 コピー</button>
+            </div>
+        </div>
+
+        <!-- ステップ7 -->
+        <div class="step">
+            <span class="step-number">7</span>
+            <h2 class="step-title"><span class="emoji">⚔️</span>ステップ7: 剣を描く</h2>
+            <p class="step-description">
+                手に剣を描きます。まっすぐな線でOKです。
+                柄（つか）の部分も描きます。
+            </p>
+            <div class="prompt-box">
+                <span class="prompt-label">nano banana pro プロンプト</span>
+                <div class="prompt-text" id="prompt7">
+step 7: add katana sword in hand, simple straight line with handle, demon slayer sword, easy step by step
+                </div>
+                <button class="copy-btn" onclick="copyPrompt('prompt7')">📋 コピー</button>
+            </div>
+        </div>
+
+        <!-- ステップ8 -->
+        <div class="step">
+            <span class="step-number">8</span>
+            <h2 class="step-title"><span class="emoji">🎨</span>ステップ8: 色を塗る</h2>
+            <p class="step-description">
+                髪は赤と黄色、羽織も赤と黄色の炎の模様、服は黒色で塗ります。
+                元気な色で塗りましょう！
+            </p>
+            <div class="prompt-box">
+                <span class="prompt-label">nano banana pro プロンプト</span>
+                <div class="prompt-text" id="prompt8">
+step 8: color the drawing, red and yellow flames, black uniform, bright colors, completed rengoku drawing, kid-friendly
+                </div>
+                <button class="copy-btn" onclick="copyPrompt('prompt8')">📋 コピー</button>
+            </div>
+            <div class="tips-box">
+                <h3>💡 色塗りのコツ</h3>
+                <ul>
+                    <li>髪は赤と黄色を混ぜて使うと、炎らしくなります</li>
+                    <li>羽織の炎の模様は、波のような線でOKです</li>
+                    <li>服は黒色で統一すると、かっこよくなります</li>
+                    <li>表情はいつも笑顔で元気な色を使いましょう</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 完成版 -->
+        <div class="final-section">
+            <h2>✨ 完成！一気に描く場合のプロンプト ✨</h2>
+            <p style="margin-bottom: 20px;">
+                もし一気に描きたい場合は、このプロンプトを使ってください：
+            </p>
+            <div class="final-prompt" id="finalPrompt">
+simple anime character drawing of Rengoku Kyojuro, step by step tutorial style, easy for kids, 
+flame-like spiky red and yellow hair, bright cheerful expression, demon slayer uniform with 
+flame pattern haori, holding katana sword, clean line art, white background, kid-friendly 
+drawing tutorial, simple shapes and easy to follow
+            </div>
+            <button class="copy-btn" onclick="copyPrompt('finalPrompt')" style="margin-top: 20px;">📋 コピー</button>
+        </div>
+
+        <!-- コツとポイント -->
+        <div class="step" style="margin-top: 40px;">
+            <h2 class="step-title"><span class="emoji">💡</span>コツとポイント</h2>
+            <div class="tips-box">
+                <ul style="list-style: none; padding: 0;">
+                    <li>✅ <strong>簡単な形から始める</strong>: 丸や四角などの簡単な形を組み合わせます</li>
+                    <li>✅ <strong>色は明るく</strong>: 煉獄さんは元気なキャラクターなので、明るい色を使いましょう</li>
+                    <li>✅ <strong>炎の模様</strong>: 羽織の炎の模様は、波のような線でOKです</li>
+                    <li>✅ <strong>表情</strong>: いつも笑顔で元気な表情を心がけましょう</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 簡単バージョン -->
+        <div class="step">
+            <h2 class="step-title"><span class="emoji">🌟</span>もっと簡単に描きたい場合</h2>
+            <p class="step-description">
+                もっと簡単に描きたい場合は、このプロンプトを使ってください：
+            </p>
+            <div class="prompt-box">
+                <span class="prompt-label">簡単バージョン プロンプト</span>
+                <div class="prompt-text" id="simplePrompt">
+very simple cartoon character, circle head, triangle body, flame hair, happy face, 
+easy drawing for elementary school kids, step by step, clean and simple
+                </div>
+                <button class="copy-btn" onclick="copyPrompt('simplePrompt')">📋 コピー</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function copyPrompt(id) {
+            const text = document.getElementById(id).textContent.trim();
+            navigator.clipboard.writeText(text).then(function() {
+                alert('プロンプトをコピーしました！nano banana proに貼り付けてください。');
+            }, function(err) {
+                // フォールバック: テキストエリアを使用
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                alert('プロンプトをコピーしました！nano banana proに貼り付けてください。');
+            });
+        }
+    </script>
+</body>
+</html>
